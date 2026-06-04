@@ -1,0 +1,72 @@
+[
+  {
+    "id": "soudal",
+    "name": "Soudal",
+    "file": "src/assets/logos/normalized/soudal.png"
+  },
+  {
+    "id": "krylon",
+    "name": "Krylon",
+    "file": "src/assets/logos/normalized/krylon.png"
+  },
+  {
+    "id": "dewalt",
+    "name": "DeWalt",
+    "file": "src/assets/logos/normalized/dewalt.png"
+  },
+  {
+    "id": "makita",
+    "name": "Makita",
+    "file": "src/assets/logos/normalized/makita.png"
+  },
+  {
+    "id": "sika",
+    "name": "Sika",
+    "file": "src/assets/logos/normalized/sika.png"
+  },
+  {
+    "id": "hilti",
+    "name": "Hilti",
+    "file": "src/assets/logos/normalized/hilti.png"
+  },
+  {
+    "id": "bosch",
+    "name": "Bosch",
+    "file": "src/assets/logos/normalized/bosch.png"
+  },
+  {
+    "id": "3m",
+    "name": "3M",
+    "file": "src/assets/logos/normalized/3m.png"
+  },
+  {
+    "id": "norton",
+    "name": "Norton",
+    "file": "src/assets/logos/normalized/norton.png"
+  },
+  {
+    "id": "caterpillar",
+    "name": "Caterpillar",
+    "file": "src/assets/logos/normalized/caterpillar.png"
+  },
+  {
+    "id": "honda",
+    "name": "Honda",
+    "file": "src/assets/logos/normalized/honda.png"
+  },
+  {
+    "id": "yamaha-motor",
+    "name": "Yamaha Motor",
+    "file": "src/assets/logos/normalized/yamaha-motor.png"
+  },
+  {
+    "id": "schneider-electric",
+    "name": "Schneider Electric",
+    "file": "src/assets/logos/normalized/schneider-electric.png"
+  },
+  {
+    "id": "siemens",
+    "name": "Siemens",
+    "file": "src/assets/logos/normalized/siemens.png"
+  }
+]
