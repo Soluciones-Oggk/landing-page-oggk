@@ -1,7 +1,38 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/@fontsource/poppins/files/poppins-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url("../node_modules/@fontsource/poppins/files/poppins-latin-500-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src: url("../node_modules/@fontsource/poppins/files/poppins-latin-600-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url("../node_modules/@fontsource/poppins/files/poppins-latin-700-normal.woff2") format("woff2");
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -9,15 +40,15 @@
   --color-brand-blue: #0b71b7;
   --color-brand-blue-dark: #074b7a;
   --color-brand-blue-soft: #e8f3fb;
-  --color-brand-yellow: #f1e42d;
-  --color-brand-yellow-shadow: #f6ad32;
-  --color-brand-yellow-soft: #fff9bf;
+  --color-brand-yellow: #fbc018;
+  --color-brand-yellow-shadow: #d9a200;
+  --color-brand-yellow-soft: #fff5cc;
   --color-carbon: #111315;
   --color-graphite: #23272b;
   --color-steel: #60666d;
   --color-line: #d9dee3;
   --color-surface: #f4f6f8;
-  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -70,7 +101,7 @@ body {
   min-width: 320px;
   min-height: 100svh;
   overflow-x: hidden;
-  font-family: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
 }
 
 #root {
@@ -79,7 +110,7 @@ body {
 
 @theme inline {
   --font-heading: var(--font-sans);
-  --font-sans: 'Geist Variable', sans-serif;
+  --font-sans: 'Poppins', sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -167,7 +198,7 @@ body {
 }
 
 ::selection {
-  background: #f1e42d;
+  background: #fbc018;
   color: #111315;
 }
 
@@ -212,4 +243,72 @@ button:focus:not(:focus-visible) {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Spotlight effect for BenefitStrip cards (adapted from 21st.dev spotlight-card) */
+[data-spotlight] {
+  --border-size: 1px;
+  --spotlight-size: 300px;
+  --spotlight-card-color: rgba(251, 192, 24, 0);
+  --spotlight-border-color: rgba(251, 192, 24, 0);
+  --spotlight-glint-color: rgba(255, 255, 255, 0);
+  position: relative;
+  border: var(--border-size) solid rgba(255, 255, 255, 0.06);
+  background-image: radial-gradient(
+    var(--spotlight-size) var(--spotlight-size) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    var(--spotlight-card-color),
+    transparent 50%
+  );
+  background-attachment: fixed;
+  background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+  background-position: 50% 50%;
+}
+
+[data-spotlight-active="true"] [data-spotlight] {
+  --spotlight-card-color: rgba(251, 192, 24, 0.12);
+  --spotlight-border-color: rgba(251, 192, 24, 0.7);
+  --spotlight-glint-color: rgba(255, 255, 255, 0.4);
+}
+
+[data-spotlight]::before,
+[data-spotlight]::after {
+  content: "";
+  position: absolute;
+  inset: calc(var(--border-size) * -1);
+  border: var(--border-size) solid transparent;
+  border-radius: inherit;
+  background-attachment: fixed;
+  background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+  mask-clip: padding-box, border-box;
+  mask-composite: intersect;
+  -webkit-mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
+  -webkit-mask-clip: padding-box, border-box;
+  -webkit-mask-composite: source-in;
+  pointer-events: none;
+}
+
+[data-spotlight]::before {
+  background-image: radial-gradient(
+    calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    var(--spotlight-border-color),
+    transparent 100%
+  );
+  filter: brightness(1.8);
+}
+
+[data-spotlight]::after {
+  background-image: radial-gradient(
+    calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
+    calc(var(--x, 0) * 1px)
+    calc(var(--y, 0) * 1px),
+    var(--spotlight-glint-color),
+    transparent 100%
+  );
 }
