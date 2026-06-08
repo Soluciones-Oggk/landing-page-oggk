@@ -8,16 +8,16 @@ export function CategoriesSection() {
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1fr] lg:items-end">
           <div>
-            <SectionEyebrow>Categorías</SectionEyebrow>
+            <SectionEyebrow>Líneas técnicas</SectionEyebrow>
             <h2 className="mt-3 max-w-xl text-4xl font-bold leading-tight text-carbon sm:text-5xl">
-              Encuentra soluciones para cada necesidad
+              Soluciones para mantener tu operación en marcha
             </h2>
           </div>
           <div className="max-w-xl lg:justify-self-end">
             <p className="text-base leading-8 text-steel">
-              Contamos con una variedad de productos orientados a construcción,
-              ferretería, mantenimiento, acabados e industria. Explora las líneas
-              principales y solicita asesoría para tu proyecto.
+              Cubrimos consumibles industriales, lubricación, mantenimiento, fijación,
+              sellado, abrasivos, hidráulica y montaje para aplicaciones exigentes en
+              minería, industria, construcción, talleres y metalmecánica.
             </p>
           </div>
         </div>
@@ -46,7 +46,7 @@ export function CategoriesSection() {
                   href="#contacto"
                   className="group mt-4 inline-flex items-center gap-2 text-sm font-bold text-brand-blue transition hover:text-brand-blue-dark"
                 >
-                  Cotizar categoría
+                  Cotizar línea
                   <span className="inline-flex w-5 items-center overflow-visible">
                     <ArrowRightIcon
                       size={15}

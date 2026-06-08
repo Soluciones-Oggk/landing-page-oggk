@@ -7,14 +7,14 @@ export function BrandsSection() {
   return (
     <section id="marcas" className="bg-white py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-        <SectionEyebrow>Marcas líderes</SectionEyebrow>
+        <SectionEyebrow>Marcas y soluciones</SectionEyebrow>
         <div className="mt-3 grid gap-6 lg:grid-cols-[0.9fr_1fr] lg:items-end">
           <h2 className="max-w-xl text-4xl font-bold leading-tight text-carbon sm:text-5xl">
-            Trabajamos con marcas para aplicaciones exigentes
+            Productos seleccionados para aplicaciones exigentes
           </h2>
           <p className="max-w-xl text-base leading-8 text-steel lg:justify-self-end">
-            Selladores, pinturas, abrasivos, herramientas, energía e industria en
-            un ecosistema visual pensado para abastecer proyectos reales.
+            Integramos marcas y líneas técnicas para abastecer mantenimiento,
+            instalación, fijación y sellado con respaldo comercial especializado.
           </p>
         </div>
       </div>

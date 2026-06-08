@@ -4,14 +4,14 @@ import { AnimatedLinkButton } from '@/components/landing/animated-buttons'
 import { FlipWords } from '@/components/ui/flip-words'
 import { assets } from '@/data/landing'
 
-const heroWords = ['construir', 'mantener', 'renovar', 'abastecer']
+const heroWords = ['mantener', 'instalar', 'fijar', 'sellar']
 
 export function Hero() {
   return (
     <section id="inicio" className="relative isolate min-h-[92svh] bg-carbon pt-20 text-white">
       <img
         src={assets.heroImage}
-        alt="Herramientas y productos para construcción"
+        alt="Herramientas y productos para industria, construcción y minería"
         decoding="async"
         fetchPriority="high"
         className="absolute inset-0 -z-20 h-full w-full object-cover"
@@ -24,24 +24,25 @@ export function Hero() {
         <div className="max-w-3xl">
           <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-xs font-semibold uppercase tracking-normal text-white backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-brand-yellow" />
-            PROVEEDOR MAYORISTA DE FERRETERÍA
+            SOCIO TÉCNICO INDUSTRIAL
           </div>
 
           <h1 className="text-5xl font-bold leading-[1.03] text-white sm:text-6xl lg:text-7xl">
-            <span className="block">Todo lo que necesitas para</span>
-            <span className="block min-h-[1.08em] text-brand-yellow">
+            <span className="block">
+              Soluciones técnicas para{' '}
               <FlipWords
                 words={heroWords}
                 duration={2300}
                 className="px-0 text-brand-yellow dark:text-brand-yellow"
               />
             </span>
-            <span className="block">en un solo lugar</span>
+            <span className="block">tu operación</span>
+            <span className="block">en campo</span>
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/74">
-            Comercializamos y distribuimos productos industriales, de mantenimiento,
-            construcción y acabados para empresas, profesionales y familias.
+            Abastecemos a empresas, talleres y contratistas con productos de alta
+            rotación y soluciones diseñadas para trabajo real en campo.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

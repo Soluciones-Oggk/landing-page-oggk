@@ -44,43 +44,43 @@ export const navItems = [
 
 export const categories = [
   {
-    title: 'Construcción',
-    description: 'Materiales y soluciones para obra, remodelación y proyectos técnicos.',
-    image: construccionImage,
-  },
-  {
-    title: 'Ferretería',
-    description: 'Abastecimiento práctico para mantenimiento, instalación y trabajo diario.',
+    title: 'Productos de alto consumo',
+    description: 'Consumibles esenciales para operación, mantenimiento e instalación en campo.',
     image: ferreteriaImage,
   },
   {
-    title: 'Pinturas y acabados',
-    description: 'Pinturas, lacas, esmaltes y complementos para acabados duraderos.',
-    image: pinturasImage,
-  },
-  {
-    title: 'Selladores y adhesivos',
-    description: 'Siliconas, espumas PU, polímeros, acrílicos y adhesivos especializados.',
-    image: selladoresImage,
-  },
-  {
-    title: 'Herramientas y accesorios',
-    description: 'Herramientas, consumibles y accesorios para profesionales y empresas.',
-    image: herramientasImage,
-  },
-  {
-    title: 'Productos industriales',
-    description: 'Insumos para operación, mantenimiento, metalmecánica e industria.',
+    title: 'Lubricación industrial',
+    description: 'Aceites, grasas y lubricantes para maquinaria, flotas y operación continua.',
     image: industrialesImage,
   },
   {
-    title: 'Generadores y energía',
-    description: 'Equipos y soluciones de energía para proyectos exigentes.',
+    title: 'Selladores y adhesivos',
+    description: 'Espumas PU, siliconas, polímeros y selladores para fijación y sellado.',
+    image: selladoresImage,
+  },
+  {
+    title: 'Mantenimiento industrial',
+    description: 'Desengrasantes, limpia frenos, limpia contactos y aflojatodo para equipos.',
+    image: herramientasImage,
+  },
+  {
+    title: 'Abrasivos industriales',
+    description: 'Discos de corte, flap y desbaste para metalmecánica, fabricación y acabado.',
+    image: pinturasImage,
+  },
+  {
+    title: 'Fijaciones y anclajes',
+    description: 'Anclajes químicos, varillas roscadas, pernos y fijaciones para montaje estructural.',
+    image: construccionImage,
+  },
+  {
+    title: 'Sistema hidráulico',
+    description: 'Mangueras, acoples y fijadores de roscas para sistemas hidráulicos exigentes.',
     image: generadoresImage,
   },
   {
-    title: 'Automotriz',
-    description: 'Pinturas, acabados y productos de mantenimiento para uso automotriz.',
+    title: 'Construcción y montaje',
+    description: 'Soluciones para paneles, fijaciones, anclajes y sellado en sistemas livianos.',
     image: automotrizImage,
   },
 ]
@@ -105,12 +105,13 @@ export const brandLogos = [
 export const metrics = [
   { value: 10, suffix: '+', label: 'años de trayectoria' },
   { value: 14, suffix: '+', label: 'marcas' },
-  { value: 8, label: 'categorías' },
-  { value: 1, label: 'sede en Arequipa' },
+  { value: 8, suffix: '', label: 'categorías' },
+  { value: 1, suffix: '', label: 'sede en Arequipa' },
 ]
 
 export const contact = {
-  email: 'ventas.oficina@solucionesoggk.com',
+  email: 'o.gutierrez@solucionesoggk.com',
+  phone: '999 295 220',
   address: 'Pasaje La Ronda Nro. 107, Cayma, Arequipa - Perú',
   store: 'https://tienda.solucionesoggk.com/',
   website: 'https://www.solucionesoggk.com/',

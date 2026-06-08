@@ -1,4 +1,4 @@
-import { Clock3, Mail, MapPin } from 'lucide-react'
+import { Clock3, Mail, MapPin, Phone } from 'lucide-react'
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa6'
 import type { IconType } from 'react-icons'
 import type { ReactNode } from 'react'
@@ -18,8 +18,8 @@ export function Footer() {
             className="h-14 w-auto"
           />
           <p className="mt-5 max-w-sm text-sm leading-7 text-white/62">
-            Comercialización y distribución de productos para construcción,
-            ferretería, mantenimiento, acabados e industria desde Arequipa, Perú.
+            Soluciones integrales para industria, construcción y minería desde
+            Arequipa, Perú.
           </p>
           <div className="mt-5 flex gap-3">
             <SocialLink href={contact.facebook} label="Facebook" icon={FaFacebookF} />
@@ -39,7 +39,7 @@ export function Footer() {
           </a>
         </FooterGroup>
 
-        <FooterGroup title="Categorías">
+        <FooterGroup title="Líneas">
           {categories.slice(0, 6).map((category) => (
             <a key={category.title} href="#productos" className="transition hover:text-brand-yellow">
               {category.title}
@@ -50,6 +50,12 @@ export function Footer() {
         <div>
           <h3 className="text-sm font-bold uppercase tracking-normal text-white">Contacto</h3>
           <div className="mt-5 space-y-4 text-sm leading-6 text-white/64">
+            <p className="flex gap-3">
+              <Phone className="mt-0.5 shrink-0 text-brand-yellow" size={17} />
+              <a href={`tel:${contact.phone.replace(/\s+/g, '')}`} className="transition hover:text-brand-yellow">
+                {contact.phone}
+              </a>
+            </p>
             <p className="flex gap-3">
               <Mail className="mt-0.5 shrink-0 text-brand-yellow" size={17} />
               <a href={`mailto:${contact.email}`} className="transition hover:text-brand-yellow">

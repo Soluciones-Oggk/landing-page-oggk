@@ -71,7 +71,7 @@ export function QuoteSection() {
     }
 
     if (!values.category) {
-      nextErrors.category = 'Selecciona una categoría de interés.'
+      nextErrors.category = 'Selecciona una línea técnica de interés.'
     }
 
     if (!values.message) {
@@ -107,18 +107,21 @@ export function QuoteSection() {
     <section id="contacto" className="bg-surface px-5 py-24 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
         <div>
-          <SectionEyebrow>Tienes un proyecto?</SectionEyebrow>
+          <SectionEyebrow>¿Tienes un requerimiento?</SectionEyebrow>
           <h2 className="mt-3 text-4xl font-bold leading-tight text-carbon sm:text-5xl">
-            Cotiza con nosotros y recibe atención personalizada
+            Cotiza con nosotros y recibe atención técnica
           </h2>
           <p className="mt-5 max-w-xl text-base leading-8 text-steel">
-            Cuéntanos qué necesitas y te ayudaremos a encontrar productos adecuados
-            para tu proyecto, negocio u obra.
+            Cuéntanos tu aplicación, cantidades y fecha estimada. Te ayudaremos a
+            identificar productos adecuados para operación continua y trabajo real en campo.
+          </p>
+          <p className="mt-4 text-sm font-semibold text-brand-blue">
+            Atención directa: {contact.phone}
           </p>
           <div className="group mt-8">
             <img
               src={assets.quoteCtaImage}
-              alt="Carrito con herramientas y productos ferreteros"
+              alt="Carrito con herramientas y productos industriales"
               loading="lazy"
               decoding="async"
               className="max-h-[420px] w-full object-contain transition duration-700 ease-out group-hover:-translate-y-2 group-hover:scale-[1.025] group-hover:drop-shadow-[0_26px_35px_rgba(11,113,183,0.22)] lg:-ml-8"
@@ -164,7 +167,7 @@ export function QuoteSection() {
           </div>
 
           <label className="mt-4 block">
-            <span className="text-sm font-semibold text-carbon">Producto o categoría de interés</span>
+            <span className="text-sm font-semibold text-carbon">Producto o línea técnica de interés</span>
             <select
               name="category"
               defaultValue=""
@@ -177,7 +180,7 @@ export function QuoteSection() {
                 }`}
             >
               <option value="" disabled>
-                Selecciona una categoría
+                Selecciona una línea
               </option>
               {categoryOptions.map((option) => (
                 <option key={option} value={option}>

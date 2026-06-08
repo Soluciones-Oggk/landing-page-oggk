@@ -6,23 +6,23 @@ import { assets } from '@/data/landing'
 const trustPoints = [
   {
     icon: Boxes,
-    title: 'Variedad para cada necesidad',
-    text: 'Soluciones para construcción, hogar, industria, automotriz y mantenimiento.',
+    title: 'Soluciones completas',
+    text: 'Acompañamos requerimientos de mantenimiento, instalación, fijación y sellado.',
   },
   {
     icon: Award,
-    title: 'Experiencia y compromiso',
-    text: 'Trabajo constante, disponibilidad y conocimiento aplicado al servicio.',
+    title: 'Uso real en campo',
+    text: 'Seleccionamos productos para operación continua, rendimiento y confiabilidad.',
   },
   {
     icon: Wrench,
-    title: 'Atención práctica',
-    text: 'Acompañamiento comercial para empresas, contratistas, profesionales y familias.',
+    title: 'Asesoría técnica',
+    text: 'Atención especializada para empresas, talleres, contratistas y aplicaciones exigentes.',
   },
   {
     icon: Factory,
-    title: 'Enfoque industrial',
-    text: 'Productos pensados para proyectos técnicos, obra y operación diaria.',
+    title: 'Cobertura multisector',
+    text: 'Atendemos minería, industria, talleres, construcción y metalmecánica.',
   },
 ]
 
@@ -33,13 +33,13 @@ export function TrustSection() {
         <div>
           <SectionEyebrow>Por qué elegirnos</SectionEyebrow>
           <h2 className="mt-3 text-4xl font-bold leading-tight text-carbon sm:text-5xl">
-            Tu aliado confiable en cada proyecto
+            Tu socio técnico en cada proyecto
           </h2>
           <p className="mt-5 text-base leading-8 text-steel">
-            Somos una empresa peruana dedicada a la distribución y comercialización
-            de productos industriales, de mantenimiento, construcción, ferretería y
-            acabados. Trabajamos con disponibilidad, convicción y entrega para
-            atender cada requerimiento.
+            En Soluciones OGGK abastecemos a empresas, talleres y contratistas con
+            consumibles industriales y soluciones diseñadas para uso real en campo.
+            No vendemos solo productos: entregamos soluciones completas para que tu
+            operación siga en marcha.
           </p>
 
           <div className="mt-8 grid gap-4">
@@ -62,7 +62,7 @@ export function TrustSection() {
           <div className="group relative overflow-hidden rounded-lg shadow-[0_24px_70px_rgba(17,19,21,0.18)]">
             <img
               src={assets.trustImage}
-              alt="Atención y abastecimiento ferretero"
+              alt="Atención técnica y abastecimiento industrial"
               loading="lazy"
               decoding="async"
               className="relative object-cover transition duration-700 ease-out group-hover:scale-[1.035] group-hover:saturate-110"
@@ -73,8 +73,8 @@ export function TrustSection() {
             <div className="flex items-center gap-3">
               <CheckCircle2 className="text-brand-yellow" size={26} />
               <div>
-                <p className="text-xl font-bold">Atención personalizada</p>
-                <p className="text-sm text-white/62">para empresas y profesionales</p>
+                <p className="text-xl font-bold">Atención especializada</p>
+                <p className="text-sm text-white/62">para cada cliente y aplicación</p>
               </div>
             </div>
           </div>
