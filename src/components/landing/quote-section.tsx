@@ -5,7 +5,7 @@ import { AnimatedSubmitButton } from '@/components/landing/animated-buttons'
 import { Reveal } from '@/components/landing/reveal'
 import { SectionEyebrow } from '@/components/landing/section-eyebrow'
 import { assets, categories, contact } from '@/data/landing'
-import { buildQuoteMailto } from '@/lib/mailto'
+import { buildQuoteWhatsappHref } from '@/lib/whatsapp'
 
 const categoryOptions = categories.map((category) => category.title)
 
@@ -24,7 +24,7 @@ const quoteFieldMaxLengths = {
   message: 900,
 } satisfies Record<QuoteFieldName, number>
 
-const maxMailtoHrefLength = 1800
+const maxWhatsappHrefLength = 2000
 
 export function QuoteSection() {
   const [errors, setErrors] = useState<QuoteFormErrors>({})
@@ -80,10 +80,10 @@ export function QuoteSection() {
     }
 
     if (Object.keys(nextErrors).length === 0) {
-      quoteHref = buildQuoteMailto(contact.email, values)
+      quoteHref = buildQuoteWhatsappHref(contact.quoteWhatsapp, values)
 
-      if (quoteHref.length > maxMailtoHrefLength) {
-        nextErrors.message = 'Reduce el detalle del requerimiento para abrirlo en tu cliente de correo.'
+      if (quoteHref.length > maxWhatsappHrefLength) {
+        nextErrors.message = 'Reduce el detalle del requerimiento para abrir WhatsApp con el mensaje prellenado.'
       }
     }
 
@@ -101,7 +101,7 @@ export function QuoteSection() {
       return
     }
 
-    window.location.href = quoteHref ?? buildQuoteMailto(contact.email, values)
+    window.open(quoteHref ?? buildQuoteWhatsappHref(contact.quoteWhatsapp, values), '_blank', 'noopener,noreferrer')
   }
 
   return (
@@ -214,13 +214,13 @@ export function QuoteSection() {
             <AnimatedSubmitButton
               type="submit"
               className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-yellow px-6 py-4 text-sm font-bold text-carbon transition hover:bg-brand-yellow-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-offset-2"
-              icon="send"
-              iconSize={18}
+              icon="whatsapp"
+              iconSize={22}
             >
-              Enviar cotización por correo
+              Enviar cotización por WhatsApp
             </AnimatedSubmitButton>
             <p className="mt-4 text-center text-xs leading-5 text-steel">
-              Se abrirá tu cliente de correo con la solicitud prellenada.
+              Se abrirá WhatsApp Web con la solicitud prellenada para que puedas enviarla.
             </p>
           </form>
         </Reveal>

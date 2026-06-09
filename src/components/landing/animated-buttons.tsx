@@ -3,8 +3,9 @@ import { motion, type HTMLMotionProps } from 'motion/react'
 
 import { ArrowRightIcon } from '@/components/animate-ui/icons/arrow-right'
 import { SendIcon } from '@/components/animate-ui/icons/send'
+import whatsappIcon from '@/assets/images/whatsapp.apng'
 
-type AnimatedButtonIcon = 'arrow' | 'send'
+type AnimatedButtonIcon = 'arrow' | 'send' | 'whatsapp'
 
 function AnimatedIcon({
   icon,
@@ -15,6 +16,18 @@ function AnimatedIcon({
   size: number
   isHovered: boolean
 }) {
+  if (icon === 'whatsapp') {
+    return (
+      <img
+        src={whatsappIcon}
+        alt=""
+        aria-hidden="true"
+        className="shrink-0 object-contain"
+        style={{ width: size, height: size }}
+      />
+    )
+  }
+
   if (icon === 'send') {
     return (
       <SendIcon
