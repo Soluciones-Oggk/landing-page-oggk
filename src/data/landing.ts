@@ -116,6 +116,7 @@ export const metrics = [
 export const contact = {
   email: 'o.gutierrez@solucionesoggk.com',
   phone: '999 295 220',
+  quoteWhatsapp: '948760412',
   address: 'Pasaje La Ronda Nro. 107, Cayma, Arequipa - Perú',
   store: 'https://tienda.solucionesoggk.com/',
   website: 'https://www.solucionesoggk.com/',
