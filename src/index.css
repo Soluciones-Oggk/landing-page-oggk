@@ -217,7 +217,9 @@ button:focus:not(:focus-visible) {
 }
 
 .logo-marquee {
+  --logo-gap: clamp(5rem, 8vw, 8rem);
   animation: logo-marquee 42s linear infinite;
+  gap: var(--logo-gap);
 }
 
 .logo-marquee:hover {
@@ -230,7 +232,7 @@ button:focus:not(:focus-visible) {
   }
 
   to {
-    transform: translateX(calc(-50% - 0.75rem));
+    transform: translateX(calc(-50% - (var(--logo-gap) / 2)));
   }
 }
 

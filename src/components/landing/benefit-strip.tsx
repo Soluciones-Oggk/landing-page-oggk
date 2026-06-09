@@ -11,6 +11,7 @@ import { BoxIcon } from '@/components/animate-ui/icons/box'
 import { HeartHandshakeIcon } from '@/components/animate-ui/icons/heart-handshake'
 import { ShieldCheckIcon } from '@/components/animate-ui/icons/shield-check'
 import { TruckIcon } from '@/components/animate-ui/icons/truck'
+import { Reveal, revealDelay } from '@/components/landing/reveal'
 
 type AnimatedIconHandle = {
   startAnimation: () => void
@@ -94,17 +95,19 @@ export function BenefitStrip() {
 
   return (
     <section id="beneficios" className="relative z-10 bg-[#0c2b45] px-5 pb-10 sm:px-6 lg:px-8">
-      <div
-        ref={stripRef}
-        onPointerEnter={syncSpotlightPointer}
-        onPointerLeave={clearSpotlightPointer}
-        onPointerMove={syncSpotlightPointer}
-        className="mx-auto grid max-w-7xl overflow-hidden rounded-lg border border-white/10 shadow-2xl md:grid-cols-2 lg:grid-cols-4"
-      >
-        {benefits.map((benefit, index) => (
-          <BenefitCard key={benefit.title} index={index} {...benefit} />
-        ))}
-      </div>
+      <Reveal className="mx-auto max-w-7xl">
+        <div
+          ref={stripRef}
+          onPointerEnter={syncSpotlightPointer}
+          onPointerLeave={clearSpotlightPointer}
+          onPointerMove={syncSpotlightPointer}
+          className="grid overflow-hidden rounded-lg border border-white/10 shadow-2xl md:grid-cols-2 lg:grid-cols-4"
+        >
+          {benefits.map((benefit, index) => (
+            <BenefitCard key={benefit.title} index={index} {...benefit} />
+          ))}
+        </div>
+      </Reveal>
     </section>
   )
 }
@@ -123,9 +126,11 @@ function BenefitCard({
   const iconRef = useRef<AnimatedIconHandle>(null)
 
   return (
-    <article
+    <Reveal
+      as="article"
       data-spotlight
       className={`group bg-[#081e30] p-6 transition-colors hover:bg-[#0a2238] ${benefitRoundedClasses[index]}`}
+      delay={revealDelay(index, 0.06)}
       onMouseEnter={() => iconRef.current?.startAnimation()}
       onMouseLeave={() => iconRef.current?.stopAnimation()}
     >
@@ -134,6 +139,6 @@ function BenefitCard({
         <h2 className="text-base font-semibold text-white">{title}</h2>
         <p className="mt-2 text-sm leading-6 text-white/62">{description}</p>
       </div>
-    </article>
+    </Reveal>
   )
 }

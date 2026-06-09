@@ -12,19 +12,21 @@ import pinturasImage from '@/assets/images/categories/pinturas-acabados.webp'
 import industrialesImage from '@/assets/images/categories/productos-industriales.webp'
 import selladoresImage from '@/assets/images/categories/selladores-adhesivos.webp'
 import logo3m from '@/assets/logos/normalized/3m.png'
+import logoAbro from '@/assets/logos/normalized/abro.png'
 import logoBosch from '@/assets/logos/normalized/bosch.png'
-import logoCaterpillar from '@/assets/logos/normalized/caterpillar.png'
-import logoDewalt from '@/assets/logos/normalized/dewalt.png'
-import logoHilti from '@/assets/logos/normalized/hilti.png'
-import logoHonda from '@/assets/logos/normalized/honda.png'
+import logoCastrol from '@/assets/logos/normalized/castrol.png'
+import logoCpp from '@/assets/logos/normalized/cpp.png'
+import logoDariza from '@/assets/logos/normalized/dariza.png'
+import logoGyplac from '@/assets/logos/normalized/gyplac.png'
 import logoKrylon from '@/assets/logos/normalized/krylon.png'
-import logoMakita from '@/assets/logos/normalized/makita.png'
-import logoNorton from '@/assets/logos/normalized/norton.png'
-import logoSchneider from '@/assets/logos/normalized/schneider-electric.png'
-import logoSiemens from '@/assets/logos/normalized/siemens.png'
+import logoPavco from '@/assets/logos/normalized/pavco.png'
+import logoRustOleum from '@/assets/logos/normalized/rust-oleum.png'
 import logoSika from '@/assets/logos/normalized/sika.png'
 import logoSoudal from '@/assets/logos/normalized/soudal.png'
-import logoYamaha from '@/assets/logos/normalized/yamaha-motor.png'
+import logoStanley from '@/assets/logos/normalized/stanley.png'
+import logoTruper from '@/assets/logos/normalized/truper.png'
+import logoVainsa from '@/assets/logos/normalized/vainsa.png'
+import logoVirutex from '@/assets/logos/normalized/virutex.png'
 
 export const assets = {
   logo,
@@ -86,25 +88,27 @@ export const categories = [
 ]
 
 export const brandLogos = [
-  { name: 'Soudal', image: logoSoudal },
-  { name: 'Krylon', image: logoKrylon },
-  { name: 'DeWalt', image: logoDewalt },
-  { name: 'Makita', image: logoMakita },
-  { name: 'Sika', image: logoSika },
-  { name: 'Hilti', image: logoHilti },
-  { name: 'Bosch', image: logoBosch },
-  { name: '3M', image: logo3m },
-  { name: 'Norton', image: logoNorton },
-  { name: 'Caterpillar', image: logoCaterpillar },
-  { name: 'Honda', image: logoHonda },
-  { name: 'Yamaha Motor', image: logoYamaha },
-  { name: 'Schneider Electric', image: logoSchneider },
-  { name: 'Siemens', image: logoSiemens },
+  { name: 'Soudal', image: logoSoudal, width: 224, height: 98 },
+  { name: 'Sika', image: logoSika, width: 110, height: 98 },
+  { name: '3M', image: logo3m, width: 165, height: 98 },
+  { name: 'Bosch', image: logoBosch, width: 98, height: 98 },
+  { name: 'Krylon', image: logoKrylon, width: 197, height: 98 },
+  { name: 'Truper', image: logoTruper, width: 174, height: 98 },
+  { name: 'Abro', image: logoAbro, width: 236, height: 54 },
+  { name: 'Vainsa', image: logoVainsa, width: 236, height: 56 },
+  { name: 'Stanley', image: logoStanley, width: 236, height: 70 },
+  { name: 'CPP', image: logoCpp, width: 236, height: 89, logoClassName: '!max-h-14 !max-w-[136px]' },
+  { name: 'Pavco', image: logoPavco, width: 236, height: 55 },
+  { name: 'Dariza', image: logoDariza, width: 116, height: 98 },
+  { name: 'Virutex', image: logoVirutex, width: 152, height: 98 },
+  { name: 'Rust-Oleum', image: logoRustOleum, width: 236, height: 46 },
+  { name: 'Castrol', image: logoCastrol, width: 236, height: 56 },
+  { name: 'Gyplac', image: logoGyplac, width: 236, height: 67 },
 ]
 
 export const metrics = [
   { value: 10, suffix: '+', label: 'años de trayectoria' },
-  { value: 14, suffix: '+', label: 'marcas' },
+  { value: 16, suffix: '+', label: 'marcas' },
   { value: 8, suffix: '', label: 'categorías' },
   { value: 1, suffix: '', label: 'sede en Arequipa' },
 ]

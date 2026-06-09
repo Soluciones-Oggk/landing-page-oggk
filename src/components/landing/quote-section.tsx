@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { AlertCircle } from 'lucide-react'
 
 import { AnimatedSubmitButton } from '@/components/landing/animated-buttons'
+import { Reveal } from '@/components/landing/reveal'
 import { SectionEyebrow } from '@/components/landing/section-eyebrow'
 import { assets, categories, contact } from '@/data/landing'
 import { buildQuoteMailto } from '@/lib/mailto'
@@ -106,7 +107,7 @@ export function QuoteSection() {
   return (
     <section id="contacto" className="bg-surface px-5 py-24 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-        <div>
+        <Reveal variant="fade-left">
           <SectionEyebrow>¿Tienes un requerimiento?</SectionEyebrow>
           <h2 className="mt-3 text-4xl font-bold leading-tight text-carbon sm:text-5xl">
             Cotiza con nosotros y recibe atención técnica
@@ -127,100 +128,102 @@ export function QuoteSection() {
               className="max-h-[420px] w-full object-contain transition duration-700 ease-out group-hover:-translate-y-2 group-hover:scale-[1.025] group-hover:drop-shadow-[0_26px_35px_rgba(11,113,183,0.22)] lg:-ml-8"
             />
           </div>
-        </div>
+        </Reveal>
 
-        <form
-          noValidate
-          onSubmit={handleSubmit}
-          className="rounded-lg border border-line bg-white p-5 shadow-[0_22px_60px_rgba(17,19,21,0.12)] sm:p-7"
-        >
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field
-              label="Nombre completo"
-              name="name"
-              error={errors.name}
-              maxLength={quoteFieldMaxLengths.name}
-              onChange={() => clearError('name')}
-            />
-            <Field
-              label="Empresa"
-              name="company"
-              maxLength={quoteFieldMaxLengths.company}
-              onChange={() => clearError('company')}
-            />
-            <Field
-              label="Teléfono / WhatsApp"
-              name="phone"
-              type="tel"
-              error={errors.phone}
-              maxLength={quoteFieldMaxLengths.phone}
-              onChange={() => clearError('phone')}
-            />
-            <Field
-              label="Correo electrónico"
-              name="email"
-              type="email"
-              error={errors.email}
-              maxLength={quoteFieldMaxLengths.email}
-              onChange={() => clearError('email')}
-            />
-          </div>
-
-          <label className="mt-4 block">
-            <span className="text-sm font-semibold text-carbon">Producto o línea técnica de interés</span>
-            <select
-              name="category"
-              defaultValue=""
-              aria-invalid={Boolean(errors.category)}
-              aria-describedby={errors.category ? 'category-error' : undefined}
-              onChange={() => clearError('category')}
-              className={`mt-2 h-12 w-full rounded-md border bg-white px-3 text-sm text-carbon outline-none transition focus:ring-4 ${errors.category
-                  ? 'border-brand-yellow-shadow ring-4 ring-brand-yellow/20 focus:border-brand-yellow-shadow focus:ring-brand-yellow/25'
-                  : 'border-line focus:border-brand-blue focus:ring-brand-blue/15'
-                }`}
-            >
-              <option value="" disabled>
-                Selecciona una línea
-              </option>
-              {categoryOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-            <ErrorMessage id="category-error" message={errors.category} />
-          </label>
-
-          <label className="mt-4 block">
-            <span className="text-sm font-semibold text-carbon">Mensaje / requerimiento</span>
-            <textarea
-              name="message"
-              rows={5}
-              maxLength={quoteFieldMaxLengths.message}
-              placeholder="Cuéntanos cantidades, aplicación, marca deseada o fecha estimada."
-              aria-invalid={Boolean(errors.message)}
-              aria-describedby={errors.message ? 'message-error' : undefined}
-              onChange={() => clearError('message')}
-              className={`mt-2 w-full resize-none rounded-md border bg-white px-3 py-3 text-sm text-carbon outline-none transition placeholder:text-steel/60 focus:ring-4 ${errors.message
-                  ? 'border-brand-yellow-shadow ring-4 ring-brand-yellow/20 focus:border-brand-yellow-shadow focus:ring-brand-yellow/25'
-                  : 'border-line focus:border-brand-blue focus:ring-brand-blue/15'
-                }`}
-            />
-            <ErrorMessage id="message-error" message={errors.message} />
-          </label>
-
-          <AnimatedSubmitButton
-            type="submit"
-            className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-yellow px-6 py-4 text-sm font-bold text-carbon transition hover:bg-brand-yellow-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-offset-2"
-            icon="send"
-            iconSize={18}
+        <Reveal variant="fade-right" delay={0.08}>
+          <form
+            noValidate
+            onSubmit={handleSubmit}
+            className="rounded-lg border border-line bg-white p-5 shadow-[0_22px_60px_rgba(17,19,21,0.12)] sm:p-7"
           >
-            Enviar cotización por correo
-          </AnimatedSubmitButton>
-          <p className="mt-4 text-center text-xs leading-5 text-steel">
-            Se abrirá tu cliente de correo con la solicitud prellenada.
-          </p>
-        </form>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Field
+                label="Nombre completo"
+                name="name"
+                error={errors.name}
+                maxLength={quoteFieldMaxLengths.name}
+                onChange={() => clearError('name')}
+              />
+              <Field
+                label="Empresa"
+                name="company"
+                maxLength={quoteFieldMaxLengths.company}
+                onChange={() => clearError('company')}
+              />
+              <Field
+                label="Teléfono / WhatsApp"
+                name="phone"
+                type="tel"
+                error={errors.phone}
+                maxLength={quoteFieldMaxLengths.phone}
+                onChange={() => clearError('phone')}
+              />
+              <Field
+                label="Correo electrónico"
+                name="email"
+                type="email"
+                error={errors.email}
+                maxLength={quoteFieldMaxLengths.email}
+                onChange={() => clearError('email')}
+              />
+            </div>
+
+            <label className="mt-4 block">
+              <span className="text-sm font-semibold text-carbon">Producto o línea técnica de interés</span>
+              <select
+                name="category"
+                defaultValue=""
+                aria-invalid={Boolean(errors.category)}
+                aria-describedby={errors.category ? 'category-error' : undefined}
+                onChange={() => clearError('category')}
+                className={`mt-2 h-12 w-full rounded-md border bg-white px-3 text-sm text-carbon outline-none transition focus:ring-4 ${errors.category
+                    ? 'border-brand-yellow-shadow ring-4 ring-brand-yellow/20 focus:border-brand-yellow-shadow focus:ring-brand-yellow/25'
+                    : 'border-line focus:border-brand-blue focus:ring-brand-blue/15'
+                  }`}
+              >
+                <option value="" disabled>
+                  Selecciona una línea
+                </option>
+                {categoryOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+              <ErrorMessage id="category-error" message={errors.category} />
+            </label>
+
+            <label className="mt-4 block">
+              <span className="text-sm font-semibold text-carbon">Mensaje / requerimiento</span>
+              <textarea
+                name="message"
+                rows={5}
+                maxLength={quoteFieldMaxLengths.message}
+                placeholder="Cuéntanos cantidades, aplicación, marca deseada o fecha estimada."
+                aria-invalid={Boolean(errors.message)}
+                aria-describedby={errors.message ? 'message-error' : undefined}
+                onChange={() => clearError('message')}
+                className={`mt-2 w-full resize-none rounded-md border bg-white px-3 py-3 text-sm text-carbon outline-none transition placeholder:text-steel/60 focus:ring-4 ${errors.message
+                    ? 'border-brand-yellow-shadow ring-4 ring-brand-yellow/20 focus:border-brand-yellow-shadow focus:ring-brand-yellow/25'
+                    : 'border-line focus:border-brand-blue focus:ring-brand-blue/15'
+                  }`}
+              />
+              <ErrorMessage id="message-error" message={errors.message} />
+            </label>
+
+            <AnimatedSubmitButton
+              type="submit"
+              className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-yellow px-6 py-4 text-sm font-bold text-carbon transition hover:bg-brand-yellow-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-offset-2"
+              icon="send"
+              iconSize={18}
+            >
+              Enviar cotización por correo
+            </AnimatedSubmitButton>
+            <p className="mt-4 text-center text-xs leading-5 text-steel">
+              Se abrirá tu cliente de correo con la solicitud prellenada.
+            </p>
+          </form>
+        </Reveal>
       </div>
     </section>
   )
