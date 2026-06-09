@@ -3,13 +3,14 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa6'
 import type { IconType } from 'react-icons'
 import type { ReactNode } from 'react'
 
+import { Reveal } from '@/components/landing/reveal'
 import { assets, categories, contact, navItems } from '@/data/landing'
 
 export function Footer() {
   return (
     <footer className="bg-[#081e30] px-5 py-14 text-white sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.3fr_0.8fr_0.8fr_1fr]">
-        <div>
+        <Reveal>
           <img
             src={assets.logoDark}
             alt="Soluciones OGGK"
@@ -26,9 +27,9 @@ export function Footer() {
             <SocialLink href={contact.instagram} label="Instagram" icon={FaInstagram} />
             <SocialLink href={contact.linkedin} label="LinkedIn" icon={FaLinkedinIn} />
           </div>
-        </div>
+        </Reveal>
 
-        <FooterGroup title="Enlaces">
+        <FooterGroup title="Enlaces" delay={0.08}>
           {navItems.map((item) => (
             <a key={item.href} href={item.href} className="transition hover:text-brand-yellow">
               {item.label}
@@ -39,7 +40,7 @@ export function Footer() {
           </a>
         </FooterGroup>
 
-        <FooterGroup title="Líneas">
+        <FooterGroup title="Líneas" delay={0.16}>
           {categories.slice(0, 6).map((category) => (
             <a key={category.title} href="#productos" className="transition hover:text-brand-yellow">
               {category.title}
@@ -47,7 +48,7 @@ export function Footer() {
           ))}
         </FooterGroup>
 
-        <div>
+        <Reveal delay={0.24}>
           <h3 className="text-sm font-bold uppercase tracking-normal text-white">Contacto</h3>
           <div className="mt-5 space-y-4 text-sm leading-6 text-white/64">
             <p className="flex gap-3">
@@ -81,7 +82,7 @@ export function Footer() {
               </span>
             </p>
           </div>
-        </div>
+        </Reveal>
       </div>
 
       <div className="mx-auto mt-10 flex max-w-7xl flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/42 sm:flex-row sm:items-center sm:justify-between">
@@ -91,12 +92,12 @@ export function Footer() {
   )
 }
 
-function FooterGroup({ title, children }: { title: string; children: ReactNode }) {
+function FooterGroup({ title, children, delay = 0 }: { title: string; children: ReactNode; delay?: number }) {
   return (
-    <div>
+    <Reveal delay={delay}>
       <h3 className="text-sm font-bold uppercase tracking-normal text-white">{title}</h3>
       <div className="mt-5 flex flex-col gap-3 text-sm text-white/62">{children}</div>
-    </div>
+    </Reveal>
   )
 }
 

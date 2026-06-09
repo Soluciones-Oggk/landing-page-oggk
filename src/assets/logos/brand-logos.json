@@ -5,34 +5,9 @@
     "file": "src/assets/logos/normalized/soudal.png"
   },
   {
-    "id": "krylon",
-    "name": "Krylon",
-    "file": "src/assets/logos/normalized/krylon.png"
-  },
-  {
-    "id": "dewalt",
-    "name": "DeWalt",
-    "file": "src/assets/logos/normalized/dewalt.png"
-  },
-  {
-    "id": "makita",
-    "name": "Makita",
-    "file": "src/assets/logos/normalized/makita.png"
-  },
-  {
     "id": "sika",
     "name": "Sika",
     "file": "src/assets/logos/normalized/sika.png"
-  },
-  {
-    "id": "hilti",
-    "name": "Hilti",
-    "file": "src/assets/logos/normalized/hilti.png"
-  },
-  {
-    "id": "bosch",
-    "name": "Bosch",
-    "file": "src/assets/logos/normalized/bosch.png"
   },
   {
     "id": "3m",
@@ -40,33 +15,68 @@
     "file": "src/assets/logos/normalized/3m.png"
   },
   {
-    "id": "norton",
-    "name": "Norton",
-    "file": "src/assets/logos/normalized/norton.png"
+    "id": "bosch",
+    "name": "Bosch",
+    "file": "src/assets/logos/normalized/bosch.png"
   },
   {
-    "id": "caterpillar",
-    "name": "Caterpillar",
-    "file": "src/assets/logos/normalized/caterpillar.png"
+    "id": "krylon",
+    "name": "Krylon",
+    "file": "src/assets/logos/normalized/krylon.png"
   },
   {
-    "id": "honda",
-    "name": "Honda",
-    "file": "src/assets/logos/normalized/honda.png"
+    "id": "truper",
+    "name": "Truper",
+    "file": "src/assets/logos/normalized/truper.png"
   },
   {
-    "id": "yamaha-motor",
-    "name": "Yamaha Motor",
-    "file": "src/assets/logos/normalized/yamaha-motor.png"
+    "id": "abro",
+    "name": "Abro",
+    "file": "src/assets/logos/normalized/abro.png"
   },
   {
-    "id": "schneider-electric",
-    "name": "Schneider Electric",
-    "file": "src/assets/logos/normalized/schneider-electric.png"
+    "id": "vainsa",
+    "name": "Vainsa",
+    "file": "src/assets/logos/normalized/vainsa.png"
   },
   {
-    "id": "siemens",
-    "name": "Siemens",
-    "file": "src/assets/logos/normalized/siemens.png"
+    "id": "stanley",
+    "name": "Stanley",
+    "file": "src/assets/logos/normalized/stanley.png"
+  },
+  {
+    "id": "cpp",
+    "name": "CPP",
+    "file": "src/assets/logos/normalized/cpp.png"
+  },
+  {
+    "id": "pavco",
+    "name": "Pavco",
+    "file": "src/assets/logos/normalized/pavco.png"
+  },
+  {
+    "id": "dariza",
+    "name": "Dariza",
+    "file": "src/assets/logos/normalized/dariza.png"
+  },
+  {
+    "id": "virutex",
+    "name": "Virutex",
+    "file": "src/assets/logos/normalized/virutex.png"
+  },
+  {
+    "id": "rust-oleum",
+    "name": "Rust-Oleum",
+    "file": "src/assets/logos/normalized/rust-oleum.png"
+  },
+  {
+    "id": "castrol",
+    "name": "Castrol",
+    "file": "src/assets/logos/normalized/castrol.png"
+  },
+  {
+    "id": "gyplac",
+    "name": "Gyplac",
+    "file": "src/assets/logos/normalized/gyplac.png"
   }
 ]

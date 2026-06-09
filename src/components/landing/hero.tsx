@@ -1,6 +1,7 @@
 import { ChevronDown } from 'lucide-react'
 
 import { AnimatedLinkButton } from '@/components/landing/animated-buttons'
+import { Reveal } from '@/components/landing/reveal'
 import { FlipWords } from '@/components/ui/flip-words'
 import { assets } from '@/data/landing'
 
@@ -22,12 +23,13 @@ export function Hero() {
 
       <div className="mx-auto flex min-h-[calc(92svh-5rem)] max-w-7xl flex-col justify-center px-5 py-16 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
-          <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-xs font-semibold uppercase tracking-normal text-white backdrop-blur">
+          <Reveal className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-xs font-semibold uppercase tracking-normal text-white backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-brand-yellow" />
             SOCIO TÉCNICO INDUSTRIAL
-          </div>
+          </Reveal>
 
-          <h1 className="text-5xl font-bold leading-[1.03] text-white sm:text-6xl lg:text-7xl">
+          <Reveal as="div" delay={0.08}>
+            <h1 className="text-5xl font-bold leading-[1.03] text-white sm:text-6xl lg:text-7xl">
             <span className="block">
               Soluciones técnicas para{' '}
               <FlipWords
@@ -38,14 +40,17 @@ export function Hero() {
             </span>
             <span className="block">tu operación</span>
             <span className="block">en campo</span>
-          </h1>
+            </h1>
+          </Reveal>
 
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/74">
+          <Reveal as="div" delay={0.16}>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/74">
             Abastecemos a empresas, talleres y contratistas con productos de alta
             rotación y soluciones diseñadas para trabajo real en campo.
-          </p>
+            </p>
+          </Reveal>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <Reveal className="mt-8 flex flex-col gap-3 sm:flex-row" delay={0.24}>
             <AnimatedLinkButton
               href="#productos"
               className="inline-flex min-h-14 items-center justify-center gap-3 rounded-md bg-brand-yellow px-7 py-4 text-base font-bold text-carbon shadow-[0_12px_28px_rgba(251,192,24,0.26)] transition hover:bg-brand-yellow-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-carbon sm:min-w-48"
@@ -62,7 +67,7 @@ export function Hero() {
             >
               Solicitar cotización
             </AnimatedLinkButton>
-          </div>
+          </Reveal>
         </div>
 
         <a

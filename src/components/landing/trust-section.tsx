@@ -1,5 +1,6 @@
 import { Award, Boxes, CheckCircle2, Factory, Wrench } from 'lucide-react'
 
+import { Reveal, revealDelay } from '@/components/landing/reveal'
 import { SectionEyebrow } from '@/components/landing/section-eyebrow'
 import { assets } from '@/data/landing'
 
@@ -30,7 +31,7 @@ export function TrustSection() {
   return (
     <section id="nosotros" className="bg-surface px-5 py-24 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-        <div>
+        <Reveal variant="fade-left">
           <SectionEyebrow>Por qué elegirnos</SectionEyebrow>
           <h2 className="mt-3 text-4xl font-bold leading-tight text-carbon sm:text-5xl">
             Tu socio técnico en cada proyecto
@@ -43,8 +44,8 @@ export function TrustSection() {
           </p>
 
           <div className="mt-8 grid gap-4">
-            {trustPoints.map((point) => (
-              <div key={point.title} className="flex gap-4">
+            {trustPoints.map((point, index) => (
+              <Reveal key={point.title} className="flex gap-4" delay={revealDelay(index)}>
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-brand-yellow text-carbon">
                   <point.icon size={21} strokeWidth={2} />
                 </div>
@@ -52,12 +53,12 @@ export function TrustSection() {
                   <h3 className="font-semibold text-carbon">{point.title}</h3>
                   <p className="mt-1 text-sm leading-6 text-steel">{point.text}</p>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
-        </div>
+        </Reveal>
 
-        <div className="relative">
+        <Reveal className="relative" variant="fade-right" delay={0.08}>
           <div className="absolute -left-5 top-10 hidden h-24 w-24 border-l-8 border-t-8 border-brand-yellow lg:block" />
           <div className="group relative overflow-hidden rounded-lg shadow-[0_24px_70px_rgba(17,19,21,0.18)]">
             <img
@@ -78,7 +79,7 @@ export function TrustSection() {
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   )
