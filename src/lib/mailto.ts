@@ -18,7 +18,7 @@ export function buildQuoteMailto(to: string, data: QuoteFormData) {
     `Empresa: ${data.company || 'No especificada'}`,
     `Teléfono / WhatsApp: ${data.phone}`,
     `Correo: ${data.email}`,
-    `Categoría de interés: ${data.category}`,
+    `Línea técnica de interés: ${data.category}`,
     '',
     'Detalle del requerimiento:',
     data.message,
