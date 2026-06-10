@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react'
 import { AnimatedLinkButton } from '@/components/landing/animated-buttons'
 import { Reveal } from '@/components/landing/reveal'
 import { FlipWords } from '@/components/ui/flip-words'
-import { assets } from '@/data/landing'
+import { assets, comingSoon } from '@/data/landing'
 
 const heroWords = ['mantener', 'instalar', 'fijar', 'sellar']
 
@@ -60,7 +60,9 @@ export function Hero() {
               Ver productos
             </AnimatedLinkButton>
             <AnimatedLinkButton
-              href="#contacto"
+              href={comingSoon.href}
+              target="_blank"
+              rel="noreferrer"
               className="inline-flex min-h-14 items-center justify-center gap-3 rounded-md border border-white/35 bg-white/10 px-7 py-4 text-base font-bold text-white shadow-[0_12px_28px_rgba(0,0,0,0.20)] backdrop-blur transition hover:bg-white hover:text-carbon focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-carbon sm:min-w-56"
               icon="send"
               iconSize={20}

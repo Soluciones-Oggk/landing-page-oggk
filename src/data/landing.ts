@@ -1,8 +1,10 @@
 import logoDark from '@/assets/brand/logo-oggk-oscuro.png'
 import logo from '@/assets/brand/logo-oggk.png'
+import logoOriginal from '@/assets/brand/logo-oggk-original.png'
 import heroImage from '@/assets/images/hero-main.webp'
 import quoteCtaImage from '@/assets/images/quote-cta.webp'
 import trustImage from '@/assets/images/trust-section.webp'
+import comingSoonConstructionSign from '@/assets/images/coming-soon-construction-sign.png'
 import automotrizImage from '@/assets/images/categories/automotriz.avif'
 import construccionImage from '@/assets/images/categories/construccion.webp'
 import ferreteriaImage from '@/assets/images/categories/ferreteria.webp'
@@ -31,9 +33,15 @@ import logoVirutex from '@/assets/logos/normalized/virutex.png'
 export const assets = {
   logo,
   logoDark,
+  logoOriginal,
   heroImage,
   trustImage,
   quoteCtaImage,
+  comingSoonConstructionSign,
+}
+
+export const comingSoon = {
+  href: '#proximamente',
 }
 
 export const navItems = [

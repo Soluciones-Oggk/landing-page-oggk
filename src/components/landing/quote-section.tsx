@@ -217,7 +217,7 @@ export function QuoteSection() {
               icon="whatsapp"
               iconSize={22}
             >
-              Enviar cotización por WhatsApp
+              Enviar solicitud por WhatsApp
             </AnimatedSubmitButton>
             <p className="mt-4 text-center text-xs leading-5 text-steel">
               Se abrirá WhatsApp Web con la solicitud prellenada para que puedas enviarla.

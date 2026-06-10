@@ -66,6 +66,10 @@ export function BenefitStrip() {
   }, [])
 
   function syncSpotlightPointer(event: PointerEvent<HTMLDivElement>) {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      return
+    }
+
     stripRef.current?.setAttribute('data-spotlight-active', 'true')
     pointerPositionRef.current = {
       x: event.clientX,
@@ -124,6 +128,31 @@ function BenefitCard({
   index: number
 }) {
   const iconRef = useRef<AnimatedIconHandle>(null)
+  const iconAnimationTimeoutRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (iconAnimationTimeoutRef.current !== null) {
+        window.clearTimeout(iconAnimationTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  function animateIconOnPress(event: PointerEvent<HTMLElement>) {
+    if (event.pointerType === 'mouse') {
+      return
+    }
+
+    if (iconAnimationTimeoutRef.current !== null) {
+      window.clearTimeout(iconAnimationTimeoutRef.current)
+    }
+
+    iconRef.current?.startAnimation()
+    iconAnimationTimeoutRef.current = window.setTimeout(() => {
+      iconRef.current?.stopAnimation()
+      iconAnimationTimeoutRef.current = null
+    }, 900)
+  }
 
   return (
     <Reveal
@@ -133,6 +162,7 @@ function BenefitCard({
       delay={revealDelay(index, 0.06)}
       onMouseEnter={() => iconRef.current?.startAnimation()}
       onMouseLeave={() => iconRef.current?.stopAnimation()}
+      onPointerDown={animateIconOnPress}
     >
       <div className="relative z-10">
         <Icon ref={iconRef} className="mb-5 text-brand-yellow" size={28} />

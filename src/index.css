@@ -314,3 +314,14 @@ button:focus:not(:focus-visible) {
     transparent 100%
   );
 }
+
+@media (hover: none), (pointer: coarse) {
+  [data-spotlight] {
+    background-image: none;
+  }
+
+  [data-spotlight]::before,
+  [data-spotlight]::after {
+    display: none;
+  }
+}

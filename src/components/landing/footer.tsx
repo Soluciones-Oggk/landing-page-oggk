@@ -4,7 +4,7 @@ import type { IconType } from 'react-icons'
 import type { ReactNode } from 'react'
 
 import { Reveal } from '@/components/landing/reveal'
-import { assets, categories, contact, navItems } from '@/data/landing'
+import { assets, categories, comingSoon, contact, navItems } from '@/data/landing'
 
 export function Footer() {
   return (
@@ -35,7 +35,7 @@ export function Footer() {
               {item.label}
             </a>
           ))}
-          <a href={contact.store} target="_blank" rel="noreferrer" className="transition hover:text-brand-yellow">
+          <a href={comingSoon.href} target="_blank" rel="noreferrer" className="transition hover:text-brand-yellow">
             Tienda
           </a>
         </FooterGroup>
