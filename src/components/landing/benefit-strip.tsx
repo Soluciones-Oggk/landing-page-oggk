@@ -66,6 +66,10 @@ export function BenefitStrip() {
   }, [])
 
   function syncSpotlightPointer(event: PointerEvent<HTMLDivElement>) {
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      return
+    }
+
     stripRef.current?.setAttribute('data-spotlight-active', 'true')
     pointerPositionRef.current = {
       x: event.clientX,
@@ -78,8 +82,13 @@ export function BenefitStrip() {
 
     animationFrameRef.current = window.requestAnimationFrame(() => {
       const { x, y } = pointerPositionRef.current
-      stripRef.current?.style.setProperty('--x', x.toFixed(2))
-      stripRef.current?.style.setProperty('--y', y.toFixed(2))
+
+      stripRef.current?.querySelectorAll<HTMLElement>('[data-spotlight]').forEach((card) => {
+        const rect = card.getBoundingClientRect()
+        card.style.setProperty('--spotlight-x', `${(x - rect.left).toFixed(2)}px`)
+        card.style.setProperty('--spotlight-y', `${(y - rect.top).toFixed(2)}px`)
+      })
+
       animationFrameRef.current = null
     })
   }
@@ -91,11 +100,15 @@ export function BenefitStrip() {
     }
 
     stripRef.current?.removeAttribute('data-spotlight-active')
+    stripRef.current?.querySelectorAll<HTMLElement>('[data-spotlight]').forEach((card) => {
+      card.style.removeProperty('--spotlight-x')
+      card.style.removeProperty('--spotlight-y')
+    })
   }
 
   return (
     <section id="beneficios" className="relative z-10 bg-[#0c2b45] px-5 pb-10 sm:px-6 lg:px-8">
-      <Reveal className="mx-auto max-w-7xl">
+      <Reveal className="mx-auto max-w-7xl" viewportMargin='0px 0px -10% 0px'>
         <div
           ref={stripRef}
           onPointerEnter={syncSpotlightPointer}
@@ -124,17 +137,43 @@ function BenefitCard({
   index: number
 }) {
   const iconRef = useRef<AnimatedIconHandle>(null)
+  const iconAnimationTimeoutRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (iconAnimationTimeoutRef.current !== null) {
+        window.clearTimeout(iconAnimationTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  function animateIconOnPress(event: PointerEvent<HTMLElement>) {
+    if (event.pointerType === 'mouse') {
+      return
+    }
+
+    if (iconAnimationTimeoutRef.current !== null) {
+      window.clearTimeout(iconAnimationTimeoutRef.current)
+    }
+
+    iconRef.current?.startAnimation()
+    iconAnimationTimeoutRef.current = window.setTimeout(() => {
+      iconRef.current?.stopAnimation()
+      iconAnimationTimeoutRef.current = null
+    }, 900)
+  }
 
   return (
     <Reveal
       as="article"
       data-spotlight
-      className={`group bg-[#081e30] p-6 transition-colors hover:bg-[#0a2238] ${benefitRoundedClasses[index]}`}
+      className={`group ${benefitRoundedClasses[index]}`}
       delay={revealDelay(index, 0.06)}
       onMouseEnter={() => iconRef.current?.startAnimation()}
       onMouseLeave={() => iconRef.current?.stopAnimation()}
+      onPointerDown={animateIconOnPress}
     >
-      <div className="relative z-10">
+      <div data-spotlight-panel className="relative z-10 h-full p-6">
         <Icon ref={iconRef} className="mb-5 text-brand-yellow" size={28} />
         <h2 className="text-base font-semibold text-white">{title}</h2>
         <p className="mt-2 text-sm leading-6 text-white/62">{description}</p>

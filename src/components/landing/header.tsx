@@ -4,11 +4,29 @@ import { AnimatePresence, motion } from 'motion/react'
 
 import { CartIcon } from '@/components/animate-ui/icons/cart'
 import { AnimatedLinkButton } from '@/components/landing/animated-buttons'
-import { assets, contact, navItems } from '@/data/landing'
+import { assets, comingSoon, navItems } from '@/data/landing'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isStoreHovered, setIsStoreHovered] = useState(false)
+
+  function handleMobileAnchorClick(href: string) {
+    setIsMenuOpen(false)
+
+    window.setTimeout(() => {
+      const target = document.querySelector<HTMLElement>(href)
+
+      if (!target) {
+        return
+      }
+
+      window.history.pushState(null, '', href)
+      window.scrollTo({
+        top: Math.max(target.offsetTop - 84, 0),
+        behavior: 'smooth',
+      })
+    }, 80)
+  }
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#0c2b45]/90 text-white shadow-[0_10px_30px_rgba(12,43,69,0.25)] backdrop-blur-2xl">
@@ -35,7 +53,7 @@ export function Header() {
 
         <div className="hidden items-center gap-4 lg:flex">
           <motion.a
-            href={contact.store}
+            href={comingSoon.href}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-md bg-white/10 px-4 py-3 text-[15px] font-medium text-white transition hover:bg-white hover:text-[#0c2b45]"
@@ -46,7 +64,9 @@ export function Header() {
             <CartIcon size={17} animate={isStoreHovered} className="shrink-0" />
           </motion.a>
           <AnimatedLinkButton
-            href="#contacto"
+            href={comingSoon.href}
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-md bg-brand-yellow px-5 py-3 text-[15px] font-bold text-carbon shadow-[0_8px_22px_rgba(251,192,24,0.24)] transition hover:bg-brand-yellow-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-offset-2"
             icon="arrow"
             iconSize={17}
@@ -73,7 +93,7 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden border-t border-white/10 bg-[#0c2b45] shadow-xl lg:hidden"
           >
             <motion.nav
@@ -82,8 +102,8 @@ export function Header() {
               animate="open"
               exit="closed"
               variants={{
-                open: { transition: { staggerChildren: 0.05, delayChildren: 0.05 } },
-                closed: { transition: { staggerChildren: 0.03, staggerDirection: -1 } },
+                open: { transition: { staggerChildren: 0.045, delayChildren: 0.12 } },
+                closed: { transition: { staggerChildren: 0.02, staggerDirection: -1 } },
               }}
             >
               {navItems.map((item) => (
@@ -91,12 +111,15 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   className="rounded-md px-2 py-2 transition hover:bg-white/10 hover:text-brand-yellow"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(event) => {
+                    event.preventDefault()
+                    handleMobileAnchorClick(item.href)
+                  }}
                   variants={{
                     open: { opacity: 1, y: 0 },
-                    closed: { opacity: 0, y: -8 },
+                    closed: { opacity: 0, y: -4 },
                   }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
                 >
                   {item.label}
                 </motion.a>
@@ -104,12 +127,14 @@ export function Header() {
               <motion.div
                 variants={{
                   open: { opacity: 1, y: 0 },
-                  closed: { opacity: 0, y: -8 },
+                  closed: { opacity: 0, y: -4 },
                 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
               >
                 <AnimatedLinkButton
-                  href="#contacto"
+                  href={comingSoon.href}
+                  target="_blank"
+                  rel="noreferrer"
                   className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-yellow px-5 py-3.5 text-base font-semibold text-carbon"
                   onClick={() => setIsMenuOpen(false)}
                   icon="arrow"
