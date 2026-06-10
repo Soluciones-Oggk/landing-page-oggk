@@ -7,10 +7,6 @@ export function ComingSoonPage() {
   function handleContactClick(event: MouseEvent<HTMLAnchorElement>) {
     event.preventDefault()
     window.location.hash = '#contacto'
-
-    window.setTimeout(() => {
-      document.querySelector('#contacto')?.scrollIntoView({ behavior: 'smooth' })
-    }, 80)
   }
 
   return (

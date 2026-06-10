@@ -12,22 +12,30 @@ export const FlipWords = ({
   duration?: number;
   className?: string;
 }) => {
-  const [currentWord, setCurrentWord] = useState(words[0]);
+  const wordCount = words.length;
+  const [currentWord, setCurrentWord] = useState(words[0] ?? "");
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
   // thanks for the fix Julian - https://github.com/Julian-AT
   const startAnimation = useCallback(() => {
+    if (words.length === 0) return;
+
     const word = words[words.indexOf(currentWord) + 1] || words[0];
     setCurrentWord(word);
     setIsAnimating(true);
   }, [currentWord, words]);
 
   useEffect(() => {
-    if (!isAnimating)
-      setTimeout(() => {
-        startAnimation();
-      }, duration);
-  }, [isAnimating, duration, startAnimation]);
+    if (isAnimating || wordCount === 0) return;
+
+    const timeoutId = window.setTimeout(() => {
+      startAnimation();
+    }, duration);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [isAnimating, wordCount, duration, startAnimation]);
+
+  if (!currentWord) return null;
 
   return (
     <AnimatePresence
@@ -35,7 +43,7 @@ export const FlipWords = ({
         setIsAnimating(false);
       }}
     >
-      <motion.div
+      <motion.span
         initial={{
           opacity: 0,
           y: 10,
@@ -92,7 +100,7 @@ export const FlipWords = ({
             <span className="inline-block">&nbsp;</span>
           </motion.span>
         ))}
-      </motion.div>
+      </motion.span>
     </AnimatePresence>
   );
 };

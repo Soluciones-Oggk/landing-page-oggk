@@ -10,7 +10,7 @@ export function Footer() {
   return (
     <footer className="bg-[#081e30] px-5 py-14 text-white sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.3fr_0.8fr_0.8fr_1fr]">
-        <Reveal>
+        <Reveal viewportMargin='0px 0px -10% 0px'>
           <img
             src={assets.logoDark}
             alt="Soluciones OGGK"

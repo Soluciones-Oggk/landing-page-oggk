@@ -250,69 +250,44 @@ button:focus:not(:focus-visible) {
 /* Spotlight effect for BenefitStrip cards (adapted from 21st.dev spotlight-card) */
 [data-spotlight] {
   --border-size: 1px;
-  --spotlight-size: 300px;
+  --spotlight-size: 260px;
+  --spotlight-x: -999px;
+  --spotlight-y: -999px;
   --spotlight-card-color: rgba(251, 192, 24, 0);
   --spotlight-border-color: rgba(251, 192, 24, 0);
-  --spotlight-glint-color: rgba(255, 255, 255, 0);
   position: relative;
-  border: var(--border-size) solid rgba(255, 255, 255, 0.06);
-  background-image: radial-gradient(
-    var(--spotlight-size) var(--spotlight-size) at
-    calc(var(--x, 0) * 1px)
-    calc(var(--y, 0) * 1px),
-    var(--spotlight-card-color),
-    transparent 50%
-  );
-  background-attachment: fixed;
-  background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
-  background-position: 50% 50%;
+  overflow: hidden;
+  padding: var(--border-size);
+  background-color: rgba(255, 255, 255, 0.06);
+  background-image:
+    radial-gradient(
+      var(--spotlight-size) var(--spotlight-size) at var(--spotlight-x) var(--spotlight-y),
+      var(--spotlight-border-color),
+      transparent 58%
+    );
 }
 
 [data-spotlight-active="true"] [data-spotlight] {
-  --spotlight-card-color: rgba(251, 192, 24, 0.12);
-  --spotlight-border-color: rgba(251, 192, 24, 0.7);
-  --spotlight-glint-color: rgba(255, 255, 255, 0.4);
+  --spotlight-card-color: rgba(251, 192, 24, 0.055);
+  --spotlight-border-color: rgba(251, 192, 24, 0.42);
 }
 
-[data-spotlight]::before,
-[data-spotlight]::after {
-  content: "";
-  position: absolute;
-  inset: calc(var(--border-size) * -1);
-  border: var(--border-size) solid transparent;
+[data-spotlight] > [data-spotlight-panel] {
+  min-height: 100%;
   border-radius: inherit;
-  background-attachment: fixed;
-  background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
-  mask-clip: padding-box, border-box;
-  mask-composite: intersect;
-  -webkit-mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
-  -webkit-mask-clip: padding-box, border-box;
-  -webkit-mask-composite: source-in;
-  pointer-events: none;
+  background-color: #081e30;
+  background-image: radial-gradient(
+    var(--spotlight-size) var(--spotlight-size) at
+    var(--spotlight-x)
+    var(--spotlight-y),
+    var(--spotlight-card-color),
+    transparent 54%
+  );
+  transition: background-color 200ms ease;
 }
 
-[data-spotlight]::before {
-  background-image: radial-gradient(
-    calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
-    calc(var(--x, 0) * 1px)
-    calc(var(--y, 0) * 1px),
-    var(--spotlight-border-color),
-    transparent 100%
-  );
-  filter: brightness(1.8);
-}
-
-[data-spotlight]::after {
-  background-image: radial-gradient(
-    calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
-    calc(var(--x, 0) * 1px)
-    calc(var(--y, 0) * 1px),
-    var(--spotlight-glint-color),
-    transparent 100%
-  );
+[data-spotlight]:hover > [data-spotlight-panel] {
+  background-color: #0a2238;
 }
 
 @media (hover: none), (pointer: coarse) {
@@ -320,8 +295,7 @@ button:focus:not(:focus-visible) {
     background-image: none;
   }
 
-  [data-spotlight]::before,
-  [data-spotlight]::after {
-    display: none;
+  [data-spotlight] > [data-spotlight-panel] {
+    background-image: none;
   }
 }
