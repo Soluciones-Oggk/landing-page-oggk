@@ -5,14 +5,14 @@ import heroImage from '@/assets/images/hero-main.webp'
 import quoteCtaImage from '@/assets/images/quote-cta-optimized.webp'
 import trustImage from '@/assets/images/trust-section.webp'
 import comingSoonConstructionSign from '@/assets/images/coming-soon-construction-sign-optimized.webp'
-import automotrizImage from '@/assets/images/categories/automotriz.avif'
-import construccionImage from '@/assets/images/categories/construccion-optimized.webp'
+import abrasivosImage from '@/assets/images/categories/abrasivos-industriales-optimized.webp'
+import construccionMontajeImage from '@/assets/images/categories/construccion-montaje-optimized.webp'
 import ferreteriaImage from '@/assets/images/categories/ferreteria-optimized.webp'
-import generadoresImage from '@/assets/images/categories/generadores-energia-optimized.webp'
-import herramientasImage from '@/assets/images/categories/herramientas-accesorios.webp'
-import pinturasImage from '@/assets/images/categories/pinturas-acabados.webp'
-import industrialesImage from '@/assets/images/categories/productos-industriales.webp'
+import fijacionesImage from '@/assets/images/categories/fijaciones-anclajes-optimized.webp'
+import lubricacionImage from '@/assets/images/categories/lubricacion-industrial-optimized.webp'
+import mantenimientoImage from '@/assets/images/categories/mantenimiento-industrial-optimized.webp'
 import selladoresImage from '@/assets/images/categories/selladores-adhesivos-optimized.webp'
+import sistemaHidraulicoImage from '@/assets/images/categories/sistema-hidraulico-optimized.webp'
 import logo3m from '@/assets/logos/normalized/3m.png'
 import logoAbro from '@/assets/logos/normalized/abro.png'
 import logoBosch from '@/assets/logos/normalized/bosch.png'
@@ -61,7 +61,7 @@ export const categories = [
   {
     title: 'Lubricación industrial',
     description: 'Aceites, grasas y lubricantes para maquinaria, flotas y operación continua.',
-    image: industrialesImage,
+    image: lubricacionImage,
   },
   {
     title: 'Selladores y adhesivos',
@@ -71,27 +71,27 @@ export const categories = [
   {
     title: 'Mantenimiento industrial',
     description: 'Desengrasantes, limpia frenos, limpia contactos y aflojatodo para equipos.',
-    image: herramientasImage,
+    image: mantenimientoImage,
   },
   {
     title: 'Abrasivos industriales',
     description: 'Discos de corte, flap y desbaste para metalmecánica, fabricación y acabado.',
-    image: pinturasImage,
+    image: abrasivosImage,
   },
   {
     title: 'Fijaciones y anclajes',
     description: 'Anclajes químicos, varillas roscadas, pernos y fijaciones para montaje estructural.',
-    image: construccionImage,
+    image: fijacionesImage,
   },
   {
     title: 'Sistema hidráulico',
     description: 'Mangueras, acoples y fijadores de roscas para sistemas hidráulicos exigentes.',
-    image: generadoresImage,
+    image: sistemaHidraulicoImage,
   },
   {
     title: 'Construcción y montaje',
     description: 'Soluciones para paneles, fijaciones, anclajes y sellado en sistemas livianos.',
-    image: automotrizImage,
+    image: construccionMontajeImage,
   },
 ]
 
