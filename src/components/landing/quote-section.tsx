@@ -1,10 +1,11 @@
-import { useState, type FormEvent } from 'react'
+import { useRef, useState, type FormEvent } from 'react'
 import { AlertCircle } from 'lucide-react'
 
 import { AnimatedSubmitButton } from '@/components/landing/animated-buttons'
 import { Reveal } from '@/components/landing/reveal'
 import { SectionEyebrow } from '@/components/landing/section-eyebrow'
 import { assets, categories, contact } from '@/data/landing'
+import { analyticsEvents, trackEvent } from '@/lib/analytics'
 import { buildQuoteWhatsappHref } from '@/lib/whatsapp'
 
 const categoryOptions = categories.map((category) => category.title)
@@ -26,8 +27,32 @@ const quoteFieldMaxLengths = {
 
 const maxWhatsappHrefLength = 2000
 
+function getMessageLengthBucket(message: string) {
+  if (message.length <= 120) {
+    return 'short'
+  }
+
+  if (message.length <= 420) {
+    return 'medium'
+  }
+
+  return 'long'
+}
+
 export function QuoteSection() {
   const [errors, setErrors] = useState<QuoteFormErrors>({})
+  const hasStartedFormRef = useRef(false)
+
+  function trackFormStart() {
+    if (hasStartedFormRef.current) {
+      return
+    }
+
+    hasStartedFormRef.current = true
+    trackEvent(analyticsEvents.quoteFormStart, {
+      source_section: 'contacto',
+    })
+  }
 
   function clearError(field: QuoteFieldName) {
     setErrors((currentErrors) => {
@@ -84,6 +109,13 @@ export function QuoteSection() {
 
       if (quoteHref.length > maxWhatsappHrefLength) {
         nextErrors.message = 'Reduce el detalle del requerimiento para abrir WhatsApp con el mensaje prellenado.'
+        trackEvent(analyticsEvents.whatsappQuoteError, {
+          category: values.category,
+          error_reason: 'href_too_long',
+          has_company: Boolean(values.company),
+          message_length_bucket: getMessageLengthBucket(values.message),
+          source_section: 'contacto',
+        })
       }
     }
 
@@ -92,6 +124,15 @@ export function QuoteSection() {
     const firstInvalidField = Object.keys(nextErrors)[0] as QuoteFieldName | undefined
 
     if (firstInvalidField) {
+      trackEvent(analyticsEvents.quoteFormSubmitError, {
+        category: values.category || 'not_selected',
+        error_count: Object.keys(nextErrors).length,
+        error_fields: Object.keys(nextErrors),
+        has_company: Boolean(values.company),
+        message_length_bucket: values.message ? getMessageLengthBucket(values.message) : 'empty',
+        source_section: 'contacto',
+      })
+
       const field = event.currentTarget.elements.namedItem(firstInvalidField)
 
       if (field instanceof HTMLElement) {
@@ -101,6 +142,12 @@ export function QuoteSection() {
       return
     }
 
+    trackEvent(analyticsEvents.whatsappQuoteOpen, {
+      category: values.category,
+      has_company: Boolean(values.company),
+      message_length_bucket: getMessageLengthBucket(values.message),
+      source_section: 'contacto',
+    })
     window.open(quoteHref ?? buildQuoteWhatsappHref(contact.quoteWhatsapp, values), '_blank', 'noopener,noreferrer')
   }
 
@@ -134,6 +181,7 @@ export function QuoteSection() {
           <form
             noValidate
             onSubmit={handleSubmit}
+            onFocusCapture={trackFormStart}
             className="rounded-lg border border-line bg-white p-5 shadow-[0_22px_60px_rgba(17,19,21,0.12)] sm:p-7"
           >
             <div className="grid gap-4 sm:grid-cols-2">

@@ -2,17 +2,31 @@ import { MessageCircle } from 'lucide-react'
 import type { MouseEvent } from 'react'
 
 import { assets } from '@/data/landing'
+import { analyticsEvents, trackEvent } from '@/lib/analytics'
 
 export function ComingSoonPage() {
   function handleContactClick(event: MouseEvent<HTMLAnchorElement>) {
     event.preventDefault()
+    trackEvent(analyticsEvents.ctaClick, {
+      cta_label: 'Contactar ahora',
+      cta_href: '#contacto',
+      cta_location: 'coming_soon',
+    })
     window.location.hash = '#contacto'
   }
 
   return (
     <section className="flex min-h-svh items-center bg-white px-5 py-12 text-carbon sm:px-6 lg:px-8">
       <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
-        <a href="#inicio" aria-label="Volver al inicio">
+        <a
+          href="#inicio"
+          aria-label="Volver al inicio"
+          onClick={() => trackEvent(analyticsEvents.ctaClick, {
+            cta_label: 'Volver al inicio',
+            cta_href: '#inicio',
+            cta_location: 'coming_soon',
+          })}
+        >
           <img src={assets.logoOriginal} alt="Soluciones OGGK" className="h-24 w-auto" />
         </a>
 

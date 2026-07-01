@@ -4,6 +4,7 @@ import { AnimatedLinkButton } from '@/components/landing/animated-buttons'
 import { Reveal } from '@/components/landing/reveal'
 import { FlipWords } from '@/components/ui/flip-words'
 import { assets, comingSoon } from '@/data/landing'
+import { analyticsEvents, trackEvent } from '@/lib/analytics'
 
 const heroWords = ['mantener', 'instalar', 'fijar', 'sellar']
 
@@ -56,6 +57,11 @@ export function Hero() {
               className="inline-flex min-h-14 items-center justify-center gap-3 rounded-md bg-brand-yellow px-7 py-4 text-base font-bold text-carbon shadow-[0_12px_28px_rgba(251,192,24,0.26)] transition hover:bg-brand-yellow-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-carbon sm:min-w-48"
               icon="arrow"
               iconSize={20}
+              onClick={() => trackEvent(analyticsEvents.ctaClick, {
+                cta_label: 'Ver productos',
+                cta_href: '#productos',
+                cta_location: 'hero',
+              })}
             >
               Ver productos
             </AnimatedLinkButton>
@@ -66,6 +72,11 @@ export function Hero() {
               className="inline-flex min-h-14 items-center justify-center gap-3 rounded-md border border-white/35 bg-white/10 px-7 py-4 text-base font-bold text-white shadow-[0_12px_28px_rgba(0,0,0,0.20)] backdrop-blur transition hover:bg-white hover:text-carbon focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-carbon sm:min-w-56"
               icon="send"
               iconSize={20}
+              onClick={() => trackEvent(analyticsEvents.ctaClick, {
+                cta_label: 'Solicitar cotizacion',
+                cta_href: comingSoon.href,
+                cta_location: 'hero',
+              })}
             >
               Solicitar cotización
             </AnimatedLinkButton>
@@ -74,6 +85,11 @@ export function Hero() {
 
         <a
           href="#beneficios"
+          onClick={() => trackEvent(analyticsEvents.ctaClick, {
+            cta_label: 'Ir a beneficios',
+            cta_href: '#beneficios',
+            cta_location: 'hero',
+          })}
           className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 rounded-full border border-white/15 p-3 text-white/72 transition hover:text-brand-yellow md:inline-flex"
           aria-label="Ir a beneficios"
         >

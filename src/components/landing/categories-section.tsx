@@ -2,6 +2,7 @@ import { ArrowRightIcon } from '@/components/animate-ui/icons/arrow-right'
 import { Reveal, revealDelay } from '@/components/landing/reveal'
 import { SectionEyebrow } from '@/components/landing/section-eyebrow'
 import { categories } from '@/data/landing'
+import { analyticsEvents, trackEvent } from '@/lib/analytics'
 
 export function CategoriesSection() {
   return (
@@ -46,6 +47,12 @@ export function CategoriesSection() {
                   </p>
                   <a
                     href="#contacto"
+                    onClick={() => trackEvent(analyticsEvents.ctaClick, {
+                      category: category.title,
+                      cta_label: 'Cotizar linea',
+                      cta_href: '#contacto',
+                      cta_location: 'category_card',
+                    })}
                     className="group mt-4 inline-flex items-center gap-2 text-sm font-bold text-brand-blue transition hover:text-brand-blue-dark"
                   >
                     Cotizar línea

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+import { AnalyticsConsentBanner } from '@/components/analytics-consent-banner'
 import { ComingSoonPage } from '@/components/coming-soon-page'
 import { BenefitStrip } from '@/components/landing/benefit-strip'
 import { BrandsSection } from '@/components/landing/brands-section'
@@ -10,6 +11,9 @@ import { Hero } from '@/components/landing/hero'
 import { MetricsSection } from '@/components/landing/metrics-section'
 import { QuoteSection } from '@/components/landing/quote-section'
 import { TrustSection } from '@/components/landing/trust-section'
+import { analyticsEvents, initAnalytics, trackEvent, trackPageView } from '@/lib/analytics'
+
+const trackedSectionIds = ['inicio', 'productos', 'marcas', 'nosotros', 'contacto'] as const
 
 function getHashTarget(hash: string) {
   if (!hash.startsWith('#') || hash.length <= 1) {
@@ -40,6 +44,14 @@ function App() {
   const isComingSoonPage = currentHash === '#proximamente'
 
   useEffect(() => {
+    initAnalytics()
+  }, [])
+
+  useEffect(() => {
+    trackPageView(`${window.location.pathname}${currentHash}`)
+  }, [currentHash])
+
+  useEffect(() => {
     function syncHash() {
       setCurrentHash(window.location.hash)
     }
@@ -47,6 +59,47 @@ function App() {
     window.addEventListener('hashchange', syncHash)
     return () => window.removeEventListener('hashchange', syncHash)
   }, [])
+
+  useEffect(() => {
+    if (isComingSoonPage) {
+      trackEvent(analyticsEvents.sectionView, {
+        section_id: 'proximamente',
+        section_label: 'Proximamente',
+      })
+      return
+    }
+
+    const observedSections = trackedSectionIds
+      .map((sectionId) => document.getElementById(sectionId))
+      .filter((section): section is HTMLElement => Boolean(section))
+
+    if (observedSections.length === 0) {
+      return
+    }
+
+    const viewedSections = new Set<string>()
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting || viewedSections.has(entry.target.id)) {
+            return
+          }
+
+          viewedSections.add(entry.target.id)
+          trackEvent(analyticsEvents.sectionView, {
+            section_id: entry.target.id,
+            section_label: entry.target.id,
+          })
+          observer.unobserve(entry.target)
+        })
+      },
+      { threshold: 0.35 },
+    )
+
+    observedSections.forEach((section) => observer.observe(section))
+
+    return () => observer.disconnect()
+  }, [isComingSoonPage])
 
   useEffect(() => {
     if (isComingSoonPage) {
@@ -100,6 +153,7 @@ function App() {
           <Footer />
         </>
       )}
+      <AnalyticsConsentBanner />
     </main>
   )
 }

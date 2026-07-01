@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { CartIcon } from '@/components/animate-ui/icons/cart'
 import { AnimatedLinkButton } from '@/components/landing/animated-buttons'
 import { assets, comingSoon, navItems } from '@/data/landing'
+import { analyticsEvents, trackEvent } from '@/lib/analytics'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -12,6 +13,11 @@ export function Header() {
 
   function handleMobileAnchorClick(href: string) {
     setIsMenuOpen(false)
+    trackEvent(analyticsEvents.ctaClick, {
+      cta_label: navItems.find((item) => item.href === href)?.label ?? href,
+      cta_href: href,
+      cta_location: 'mobile_header',
+    })
 
     window.setTimeout(() => {
       const target = document.querySelector<HTMLElement>(href)
@@ -44,6 +50,11 @@ export function Header() {
             <a
               key={item.href}
               href={item.href}
+              onClick={() => trackEvent(analyticsEvents.ctaClick, {
+                cta_label: item.label,
+                cta_href: item.href,
+                cta_location: 'desktop_header',
+              })}
               className="relative py-2 transition hover:text-white after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:scale-x-0 after:bg-brand-yellow after:transition-transform hover:after:scale-x-100"
             >
               {item.label}
@@ -57,6 +68,11 @@ export function Header() {
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-md bg-white/10 px-4 py-3 text-[15px] font-medium text-white transition hover:bg-white hover:text-[#0c2b45]"
+            onClick={() => trackEvent(analyticsEvents.storeClick, {
+              cta_label: 'Tienda',
+              cta_href: comingSoon.href,
+              cta_location: 'desktop_header',
+            })}
             onHoverStart={() => setIsStoreHovered(true)}
             onHoverEnd={() => setIsStoreHovered(false)}
           >
@@ -70,6 +86,11 @@ export function Header() {
             className="inline-flex items-center gap-2 rounded-md bg-brand-yellow px-5 py-3 text-[15px] font-bold text-carbon shadow-[0_8px_22px_rgba(251,192,24,0.24)] transition hover:bg-brand-yellow-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-offset-2"
             icon="arrow"
             iconSize={17}
+            onClick={() => trackEvent(analyticsEvents.ctaClick, {
+              cta_label: 'Cotizar ahora',
+              cta_href: comingSoon.href,
+              cta_location: 'desktop_header',
+            })}
           >
             Cotizar ahora
           </AnimatedLinkButton>
@@ -136,7 +157,14 @@ export function Header() {
                   target="_blank"
                   rel="noreferrer"
                   className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-yellow px-5 py-3.5 text-base font-semibold text-carbon"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={() => {
+                    setIsMenuOpen(false)
+                    trackEvent(analyticsEvents.ctaClick, {
+                      cta_label: 'Solicitar cotizacion',
+                      cta_href: comingSoon.href,
+                      cta_location: 'mobile_header',
+                    })
+                  }}
                   icon="arrow"
                   iconSize={16}
                 >

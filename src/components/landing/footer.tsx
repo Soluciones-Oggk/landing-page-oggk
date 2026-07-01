@@ -5,6 +5,7 @@ import type { ReactNode } from 'react'
 
 import { Reveal } from '@/components/landing/reveal'
 import { assets, categories, comingSoon, contact, navItems } from '@/data/landing'
+import { analyticsEvents, trackEvent } from '@/lib/analytics'
 
 export function Footer() {
   return (
@@ -31,18 +32,47 @@ export function Footer() {
 
         <FooterGroup title="Enlaces" delay={0.08}>
           {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="transition hover:text-brand-yellow">
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={() => trackEvent(analyticsEvents.ctaClick, {
+                cta_label: item.label,
+                cta_href: item.href,
+                cta_location: 'footer',
+              })}
+              className="transition hover:text-brand-yellow"
+            >
               {item.label}
             </a>
           ))}
-          <a href={comingSoon.href} target="_blank" rel="noreferrer" className="transition hover:text-brand-yellow">
+          <a
+            href={comingSoon.href}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => trackEvent(analyticsEvents.storeClick, {
+              cta_label: 'Tienda',
+              cta_href: comingSoon.href,
+              cta_location: 'footer',
+            })}
+            className="transition hover:text-brand-yellow"
+          >
             Tienda
           </a>
         </FooterGroup>
 
         <FooterGroup title="Líneas" delay={0.16}>
           {categories.slice(0, 6).map((category) => (
-            <a key={category.title} href="#productos" className="transition hover:text-brand-yellow">
+            <a
+              key={category.title}
+              href="#productos"
+              onClick={() => trackEvent(analyticsEvents.ctaClick, {
+                category: category.title,
+                cta_label: 'Linea footer',
+                cta_href: '#productos',
+                cta_location: 'footer',
+              })}
+              className="transition hover:text-brand-yellow"
+            >
               {category.title}
             </a>
           ))}
@@ -53,13 +83,25 @@ export function Footer() {
           <div className="mt-5 space-y-4 text-sm leading-6 text-white/64">
             <p className="flex gap-3">
               <Phone className="mt-0.5 shrink-0 text-brand-yellow" size={17} />
-              <a href={`tel:${contact.phone.replace(/\s+/g, '')}`} className="transition hover:text-brand-yellow">
+              <a
+                href={`tel:${contact.phone.replace(/\s+/g, '')}`}
+                onClick={() => trackEvent(analyticsEvents.phoneClick, {
+                  cta_location: 'footer',
+                })}
+                className="transition hover:text-brand-yellow"
+              >
                 {contact.phone}
               </a>
             </p>
             <p className="flex gap-3">
               <Mail className="mt-0.5 shrink-0 text-brand-yellow" size={17} />
-              <a href={`mailto:${contact.email}`} className="transition hover:text-brand-yellow">
+              <a
+                href={`mailto:${contact.email}`}
+                onClick={() => trackEvent(analyticsEvents.emailClick, {
+                  cta_location: 'footer',
+                })}
+                className="transition hover:text-brand-yellow"
+              >
                 {contact.email}
               </a>
             </p>
@@ -116,6 +158,10 @@ function SocialLink({
       target="_blank"
       rel="noreferrer"
       aria-label={label}
+      onClick={() => trackEvent(analyticsEvents.socialClick, {
+        social_network: label,
+        cta_location: 'footer',
+      })}
       className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/12 text-white/70 transition hover:-translate-y-0.5 hover:border-brand-yellow hover:text-brand-yellow"
     >
       <Icon size={16} />
