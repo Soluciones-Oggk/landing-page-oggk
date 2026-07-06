@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 
-import { AnalyticsConsentBanner } from '@/components/analytics-consent-banner'
 import { ComingSoonPage } from '@/components/coming-soon-page'
 import { BenefitStrip } from '@/components/landing/benefit-strip'
 import { BrandsSection } from '@/components/landing/brands-section'
@@ -153,7 +152,6 @@ function App() {
           <Footer />
         </>
       )}
-      <AnalyticsConsentBanner />
     </main>
   )
 }

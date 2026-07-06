@@ -1,5 +1,3 @@
-const analyticsConsentKey = 'oggk_analytics_consent'
-
 export const analyticsEvents = {
   pageView: 'page_view',
   sectionView: 'section_view',
@@ -15,7 +13,6 @@ export const analyticsEvents = {
 } as const
 
 export type AnalyticsEventName = (typeof analyticsEvents)[keyof typeof analyticsEvents]
-export type AnalyticsConsent = 'accepted' | 'rejected' | null
 export type AnalyticsEventParams = Record<string, boolean | number | string | string[] | undefined>
 
 declare global {
@@ -28,38 +25,8 @@ declare global {
 const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID
 let isAnalyticsInitialized = false
 
-function canUseBrowserStorage() {
-  return typeof window !== 'undefined' && 'localStorage' in window
-}
-
 function canUseAnalytics() {
-  return isAnalyticsConfigured() && getAnalyticsConsent() === 'accepted'
-}
-
-export function isAnalyticsConfigured() {
   return import.meta.env.PROD && Boolean(measurementId)
-}
-
-export function getAnalyticsConsent(): AnalyticsConsent {
-  if (!canUseBrowserStorage()) {
-    return null
-  }
-
-  const storedConsent = window.localStorage.getItem(analyticsConsentKey)
-
-  if (storedConsent === 'accepted' || storedConsent === 'rejected') {
-    return storedConsent
-  }
-
-  return null
-}
-
-export function setAnalyticsConsent(consent: Exclude<AnalyticsConsent, null>) {
-  if (!canUseBrowserStorage()) {
-    return
-  }
-
-  window.localStorage.setItem(analyticsConsentKey, consent)
 }
 
 export function initAnalytics() {
